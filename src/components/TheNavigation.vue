@@ -1,16 +1,24 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link>
-    <router-link to="/brazil">Brazil</router-link>
-    <router-link to="/hawaii">Hawaii</router-link>
-    <router-link to="/jamaica">Jamaica</router-link>
-    <router-link to="/panama">Panama</router-link>
+    <router-link id="logo" to="/">Vue School Travel App</router-link>
+
+    <router-link 
+      v-for="dest in destinations"
+      :key="dest.id"
+      :to="{name: 'destination.show', params:{id: dest.id, slug: dest.slug}}"
+      >
+        {{dest.name}}
+    </router-link>
   </div>
 </template>
 
-<style lang="css">
-    #nav .vue-school-active-link {
-        color:red;
-        border-bottom: 2px solid red;
+<script>
+import dataSource from '@/data.json';
+export default {
+    data() {
+        return {
+            destinations: dataSource.destinations
+        }
     }
-</style>
+}
+</script>
