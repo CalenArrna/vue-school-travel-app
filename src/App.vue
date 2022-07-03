@@ -1,8 +1,8 @@
 <template>
 
-  <TheNavigation/>
+  <TheNavigation />
   <div class="container">
-     <router-view :key="$route.path"></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -10,6 +10,6 @@
 import TheNavigation from '@/components/TheNavigation.vue';
 
 export default {
-  components: {TheNavigation}
+  components: { TheNavigation }
 }
 </script>
