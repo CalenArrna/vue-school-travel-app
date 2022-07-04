@@ -1,24 +1,23 @@
 <template>
   <div id="nav">
-    <router-link id="logo" to="/">Vue School Travel App</router-link>
+    <AppLink id="logo" to="/">Vue School Travel App</AppLink>
 
-    <router-link 
-      v-for="dest in destinations"
-      :key="dest.id"
-      :to="{name: 'destination.show', params:{id: dest.id, slug: dest.slug}}"
-      >
-        {{dest.name}}
-    </router-link>
+    <AppLink v-for="dest in destinations" :key="dest.id"
+      :to="{ name: 'destination.show', params: { id: dest.id, slug: dest.slug } }">
+      {{ dest.name }}
+    </AppLink>
+    <AppLink :to="{ name: 'protected' }">Dashboard</AppLink>
+    <AppLink to="https://vueschool.io">Vue School</AppLink>
   </div>
 </template>
 
 <script>
 import dataSource from '@/data.json';
 export default {
-    data() {
-        return {
-            destinations: dataSource.destinations
-        }
-    }
+  data() {
+    return {
+      destinations: dataSource.destinations
+    };
+  },
 }
 </script>
