@@ -4,16 +4,23 @@ import { parse } from "@vue/compiler-dom";
 import dataSource from "@/data.json";
 
 const routes = [
-  { path: "/", name: "Home", component: Home },
+  { path: "/", name: "Home", component: Home, alias: "/home" },
   {
     path: "/login",
     name: "login",
     component: () => import("@/views/Login.vue"),
   },
   {
+    path: "/example/:id(\\d+)",
+    component: () => import("@/views/Login.vue"),
+  },
+  {
     path: "/protected",
     name: "protected",
-    component: () => import("@/views/Protected.vue"),
+    components: {
+      default: () => import("@/views/Protected.vue"),
+      LeftSidebar: () => import("@/components/LeftSidebar.vue"),
+    },
     meta: {
       requiresAuth: true,
     },
@@ -21,7 +28,10 @@ const routes = [
   {
     path: "/invoices",
     name: "invoices",
-    component: () => import("@/views/Invoices.vue"),
+    components: {
+      default: () => import("@/views/Invoices.vue"),
+      LeftSidebar: () => import("@/components/LeftSidebar.vue"),
+    },
     meta: {
       requiresAuth: true,
     },
